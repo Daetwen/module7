@@ -39,7 +39,6 @@ export class CertificateUpdateComponent implements OnInit {
     this.body = {};
     if(this.canUpdate()) {
       this.addParametersInBody();
-      console.log(this.body);
       this.certificate.patchData(this.CERTIFICATE_UPDATE_PATH, this.body)
         .subscribe((result) => {
         this.response = result;
@@ -84,6 +83,7 @@ export class CertificateUpdateComponent implements OnInit {
     this.body.price = this.price.value == '' ? null: this.price.value;
     // @ts-ignore
     this.body.duration = this.duration.value == '' ? null: this.duration.value;
+    console.log(this.body);
   }
 
   isIdValid() {

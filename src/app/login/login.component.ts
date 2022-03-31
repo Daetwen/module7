@@ -53,11 +53,7 @@ export class LoginComponent implements OnInit {
   loginEvent(event: Event) {
     event.preventDefault();
     if(this.canSubmit()) {
-      // @ts-ignore
-      this.body.login = this.login.value;
-      // @ts-ignore
-      this.body.password = this.password.value;
-      console.log(this.body)
+      this.collectBody();
       this.certificate.postData(this.LOGIN_PATH, this.body).subscribe(result => {
          this.response = result;
          console.log(this.response);
@@ -71,14 +67,7 @@ export class LoginComponent implements OnInit {
       });
     }
     else {
-      // @ts-ignore
-      if(this.login.invalid) {
-        this.isLoginInvalid = true;
-      }
-      // @ts-ignore
-      if(this.password.invalid) {
-        this.isPasswordInvalid = true;
-      }
+      this.activateInvalidFields();
     }
   }
 
@@ -89,6 +78,25 @@ export class LoginComponent implements OnInit {
       && !this.login.invalid
       // @ts-ignore
       && !this.password.invalid;
+  }
+
+  collectBody() {
+    // @ts-ignore
+    this.body.login = this.login.value;
+    // @ts-ignore
+    this.body.password = this.password.value;
+    console.log(this.body)
+  }
+
+  activateInvalidFields() {
+    // @ts-ignore
+    if(this.login.invalid) {
+      this.isLoginInvalid = true;
+    }
+    // @ts-ignore
+    if(this.password.invalid) {
+      this.isPasswordInvalid = true;
+    }
   }
 
   loginChange() {

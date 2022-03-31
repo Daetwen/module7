@@ -42,48 +42,20 @@ export class RegisterComponent implements OnInit {
 
   response = Object();
 
-  constructor(private certificate: CertificateService, private router: Router) { }
+  constructor(private certificate: CertificateService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   registerEvent(event: Event) {
     event.preventDefault();
     if (this.canRegister()) {
-      // @ts-ignore
-      this.body.name = this.name.value;
-      // @ts-ignore
-      this.body.surname = this.surname.value;
-      // @ts-ignore
-      this.body.login = this.login.value;
-      // @ts-ignore
-      this.body.password = this.password.value;
-      this.body.role = this.CREATE_ROLE_USER;
+      this.collectBody();
       this.certificate.postData(this.REGISTER_PATH, this.body).subscribe(result => {
         console.log(result);
         this.router.navigate([this.NAVIGATE_LOGIN_PATH]).then(() => {});
       })
     } else {
-      // @ts-ignore
-      if(this.name.invalid) {
-        this.isLoginInvalid = true;
-      }
-      // @ts-ignore
-      if(this.surname.invalid) {
-        this.isPasswordInvalid = true;
-      }
-      // @ts-ignore
-      if(this.login.invalid) {
-        this.isLoginInvalid = true;
-      }
-      // @ts-ignore
-      if(this.password.invalid) {
-        this.isPasswordInvalid = true;
-      }
-      // @ts-ignore
-      if(this.passwordRepeat != this.password) {
-        this.isPassword2Invalid = true;
-      }
+      this.activateInvalidFields();
     }
   }
 
@@ -103,6 +75,41 @@ export class RegisterComponent implements OnInit {
       && !this.password.invalid
       // @ts-ignore
       && this.passwordRepeat == this.password;
+  }
+
+  collectBody() {
+    // @ts-ignore
+    this.body.name = this.name.value;
+    // @ts-ignore
+    this.body.surname = this.surname.value;
+    // @ts-ignore
+    this.body.login = this.login.value;
+    // @ts-ignore
+    this.body.password = this.password.value;
+    this.body.role = this.CREATE_ROLE_USER;
+  }
+
+  activateInvalidFields() {
+    // @ts-ignore
+    if(this.name.invalid) {
+      this.isLoginInvalid = true;
+    }
+    // @ts-ignore
+    if(this.surname.invalid) {
+      this.isPasswordInvalid = true;
+    }
+    // @ts-ignore
+    if(this.login.invalid) {
+      this.isLoginInvalid = true;
+    }
+    // @ts-ignore
+    if(this.password.invalid) {
+      this.isPasswordInvalid = true;
+    }
+    // @ts-ignore
+    if(this.passwordRepeat != this.password) {
+      this.isPassword2Invalid = true;
+    }
   }
 
   nameChange() {

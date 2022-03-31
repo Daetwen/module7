@@ -4,8 +4,6 @@ import {CertificateService} from "../service/giftcertificate.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ModalOrderFindComponent} from "../modal/modalorderfind/modalorderfind.component";
-import {catchError} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-order',
@@ -104,9 +102,7 @@ export class OrderComponent implements OnInit {
 
   prevPage(event: Event) {
     event.preventDefault();
-    // @ts-ignore
     if (this.currentPage > 1) {
-      // @ts-ignore
       this.currentPage -= 1;
       if (localStorage.getItem(this.LOCAL_STORAGE_KEY_FIND_BY_USER_ID) != null) {
         this.getElementsForSearchByUserId();
@@ -118,9 +114,7 @@ export class OrderComponent implements OnInit {
 
   nextPage(event: Event) {
     event.preventDefault();
-      // @ts-ignore
       if (this.collection.length == this.PAGE_SIZE) {
-        // @ts-ignore
         this.currentPage += 1;
         if (localStorage.getItem(this.LOCAL_STORAGE_KEY_FIND_BY_USER_ID) != null) {
           this.getElementsForSearchByUserId();

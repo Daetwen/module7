@@ -81,15 +81,7 @@ export class TagComponent implements OnInit {
 
   findOne(event: Event) {
     event.preventDefault();
-    let queryByParameters = this.FIND_ONE_PATH;
-    if (this.searchName?.value != null && this.searchName?.value != "" && this.searchName?.valid) {
-      queryByParameters = queryByParameters + this.FIND_ONE_PARAMETER_NAME + this.searchName.value + "&";
-    }
-    if (this.searchId?.value != null && this.searchId?.value != "" && this.searchId?.valid) {
-      queryByParameters = queryByParameters + this.FIND_ONE_PARAMETER_ID + this.searchId.value;
-    }
-    console.log(queryByParameters.toString());
-    this.certificate.getData(queryByParameters.toString())
+    this.certificate.getData(this.createQueryForSearchOne())
       .subscribe(result => {
         this.collection = [];
         this.collection[0] = result as unknown as Tag;
@@ -98,6 +90,18 @@ export class TagComponent implements OnInit {
       });
     this.searchForm.reset();
     this.isAll = false;
+  }
+
+  createQueryForSearchOne():string {
+    let queryByParameters = this.FIND_ONE_PATH;
+    if (this.searchName?.value != null && this.searchName?.value != "" && this.searchName?.valid) {
+      queryByParameters = queryByParameters + this.FIND_ONE_PARAMETER_NAME + this.searchName.value + "&";
+    }
+    if (this.searchId?.value != null && this.searchId?.value != "" && this.searchId?.valid) {
+      queryByParameters = queryByParameters + this.FIND_ONE_PARAMETER_ID + this.searchId.value;
+    }
+    console.log(queryByParameters.toString());
+    return queryByParameters;
   }
 
   findMostPopular(event: Event) {
@@ -121,9 +125,7 @@ export class TagComponent implements OnInit {
 
   prevPage(event: Event) {
     event.preventDefault();
-    // @ts-ignore
     if (this.currentPage > 1) {
-      // @ts-ignore
       this.currentPage -= 1;
       this.getElementsForSearchAll();
     }
@@ -132,7 +134,6 @@ export class TagComponent implements OnInit {
   nextPage(event: Event) {
     event.preventDefault();
     if (this.collection.length == this.PAGE_SIZE) {
-      // @ts-ignore
       this.currentPage += 1;
       this.getElementsForSearchAll();
     }

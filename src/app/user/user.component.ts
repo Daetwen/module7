@@ -55,9 +55,7 @@ export class UserComponent implements OnInit {
 
   prevPage(event: Event) {
     event.preventDefault();
-    // @ts-ignore
     if (this.currentPage > 1) {
-      // @ts-ignore
       this.currentPage -= 1;
       this.getElementsForSearchAll();
     }
@@ -66,7 +64,6 @@ export class UserComponent implements OnInit {
   nextPage(event: Event) {
     event.preventDefault();
     if (this.collection.length == this.PAGE_SIZE) {
-      // @ts-ignore
       this.currentPage += 1;
       this.getElementsForSearchAll();
     }
