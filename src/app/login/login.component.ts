@@ -61,14 +61,14 @@ export class LoginComponent implements OnInit {
       this.certificate.postData(this.LOGIN_PATH, this.body).subscribe(result => {
          this.response = result;
          console.log(this.response);
+        this.tokenDecoded(this.response.token);
+        localStorage.setItem(this.LOCAL_STORAGE_KEY_USER_ID, this.tokenPayload.jti);
+        localStorage.setItem(this.LOCAL_STORAGE_KEY_LOGIN, this.tokenPayload.sub);
+        localStorage.setItem(this.LOCAL_STORAGE_KEY_TOKEN, this.response.token);
+        console.log(localStorage);
+        this.loginForm.reset();
+        this.router.navigate([this.NAVIGATE_PROFILE_PATH]).then(() => {});
       });
-      this.tokenDecoded(this.response.token);
-      localStorage.setItem(this.LOCAL_STORAGE_KEY_USER_ID, this.tokenPayload.jti);
-      localStorage.setItem(this.LOCAL_STORAGE_KEY_LOGIN, this.tokenPayload.sub);
-      localStorage.setItem(this.LOCAL_STORAGE_KEY_TOKEN, this.response.token);
-      console.log(localStorage);
-      this.loginForm.reset();
-      this.router.navigate([this.NAVIGATE_PROFILE_PATH]).then(() => {});
     }
     else {
       // @ts-ignore
