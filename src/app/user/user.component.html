@@ -1,0 +1,71 @@
+<div class="users-main">
+  <div class="users-title">Users list</div>
+  <div class="users-all-container" *ngIf="!isAll">
+    <button type="button"
+            class="users-button users-button-all gradient-green"
+            (click)="returnToAll($event)">
+      Return to the list of all users
+    </button>
+  </div>
+  <div class="users-search-item">
+    <form class="main-search-form" [formGroup]="searchByIdForm">
+      <label>
+        <input class="main-search-input"
+               type="number"
+               formControlName="id"
+               placeholder="Enter user ID"
+               required
+               min="1"
+        />
+      </label>
+      <button type="button"
+              class="users-button main-search-button gradient-green"
+              (click)="getOne($event)">
+        Find
+      </button>
+    </form>
+  </div>
+  <div class="users-container">
+    <div class="users-grid-container">
+      <div class="users-grid-container-item gradient-green" *ngFor="let user of collection">
+        <div class="users-list-image-item" ngSwitch="{{user.content.photoRef}}">
+          <img *ngSwitchCase="''" class="users-list-image-item" src="./assets/jpg/profile.jpg" alt="image">
+          <img *ngSwitchDefault class="users-list-image-item" src="{{user.content.photoRef}}" alt="image">
+        </div>
+        <div class="users-list-name-item">{{user.content.name}}</div>
+        <div class="users-list-surname-item">{{user.content.surname}}</div>
+        <div class="users-list-text-item">
+          <div class="users-list-text1">
+            id:
+          </div>
+          <div class="users-list-text2">
+            {{user.content.id}}
+          </div>
+        </div>
+        <div class="users-list-text-item">
+          <div class="users-list-text1">
+            Login:
+          </div>
+          <div class="users-list-text2">
+            {{user.content.login}}
+          </div>
+        </div>
+        <div class="users-list-text-item">
+          <div class="users-list-text1">
+            Role:
+          </div>
+          <div class="users-list-text2">
+            {{user.content.role}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-pages-container">
+    <button type="button" class="main-button-prev gradient-green" (click)="prevPage($event)">Back</button>
+    <div class="main-page-number">{{currentPage}}</div>
+    <button type="button" class="main-button-next gradient-green" (click)="nextPage($event)">Forward</button>
+  </div>
+  <div class="size"></div>
+</div>
+

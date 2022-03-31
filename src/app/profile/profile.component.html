@@ -1,0 +1,34 @@
+<div class="profile-main text-style-main">
+  <div class="profile-title">Profile</div>
+  <div class="profile-container text-style-main">
+    <table>
+      <tr>
+        <th class="profile-table-1 profile-text">Name:</th>
+        <th class="profile-table-2 profile-text">{{user?.name}}</th>
+      </tr>
+      <tr>
+        <th class="profile-table-1 profile-text">Surname:</th>
+        <th class="profile-table-2 profile-text">{{user?.surname}}</th>
+      </tr>
+      <tr>
+        <th class="profile-table-1 profile-text">Login:</th>
+        <th class="profile-table-2 profile-text">{{user?.login}}</th>
+      </tr>
+      <tr>
+        <th class="profile-table-1 profile-text">ID:</th>
+        <th class="profile-table-2 profile-text">{{user?.id}}</th>
+      </tr>
+      <tr>
+        <th class="profile-table-1 profile-text">Role:</th>
+        <th class="profile-table-2 profile-text">{{user?.role}}</th>
+      </tr>
+    </table>
+    <div ngSwitch="{{user?.photoRef}}">
+      <img *ngSwitchCase="''" class="profile-image" src="./assets/jpg/profile.jpg" alt="image">
+      <img *ngSwitchDefault class="profile-image" src="{{user?.photoRef}}" alt="image">
+    </div>
+    <button type="button" class="logout-button gradient-green2" (click)="logout($event)">Log out</button>
+  </div>
+</div>
+
+

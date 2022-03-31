@@ -1,0 +1,48 @@
+<div class="login-main text-style-main">
+  <div class="login-title">Login</div>
+  <div class="login-container">
+    <div class="login-info">
+      Fields marked with * are required
+    </div>
+    <form class="login-form" [formGroup]="loginForm">
+      <div class="login-input">
+        <label>
+          <input type="text"
+                 formControlName="login"
+                 placeholder="Login *"
+                 required
+                 minlength="1"
+                 maxlength="40"
+                 (ngModelChange)="loginChange()"
+                 pattern="{{loginPattern}}"
+          >
+        </label>
+      </div>
+      <div class="login-input">
+        <label>
+          <input type="password"
+                 autocomplete="current-password"
+                 formControlName="password"
+                 placeholder="Password *"
+                 required
+                 maxlength="45"
+                 (ngModelChange)="passwordChange()"
+                 pattern="{{passwordPattern}}"
+          >
+        </label>
+      </div>
+      <button type="button" class="login-button gradient-green" (click)="loginEvent($event)">Log in</button>
+    </form>
+    <form class="login-register-form">
+      <button routerLink="/register" class="login-register-button gradient-green">Register</button>
+    </form>
+    <div class="error-message-container">
+      <div class="error-message login-error-massage" *ngIf="isLoginInvalid">
+        Login is invalid. It should contain character-numeric symbols, as well as the characters !?,. and space.
+      </div>
+      <div class="error-message password-error-massage" *ngIf="isPasswordInvalid">
+        Password is invalid. It should contain character-numeric symbols, as well as the characters _!?# and space.
+      </div>
+    </div>
+  </div>
+</div>

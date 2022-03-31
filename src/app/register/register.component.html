@@ -1,0 +1,99 @@
+<div class="register-main text-style-main">
+  <div class="register-title">Register</div>
+  <div class="register-container">
+    <div class="register-info">
+      Fields marked with * are required
+    </div>
+    <form class="register-form" [formGroup]="registerForm">
+      <div class="register-input">
+        <label>
+          <input type="text"
+                 formControlName="name"
+                 placeholder="Name *"
+                 required
+                 minlength="1"
+                 maxlength="40"
+                 (ngModelChange)="nameChange()"
+                 pattern="{{namePattern}}"
+          >
+        </label>
+      </div>
+      <div class="register-input">
+        <label>
+          <input type="text"
+                 formControlName="surname"
+                 placeholder="Surname *"
+                 required
+                 minlength="1"
+                 maxlength="40"
+                 (ngModelChange)="surnameChange()"
+                 pattern="{{namePattern}}"
+          >
+        </label>
+      </div>
+      <div class="register-input">
+        <label>
+          <input type="text"
+                 formControlName="login"
+                 placeholder="Login *"
+                 required
+                 minlength="1"
+                 maxlength="40"
+                 (ngModelChange)="loginChange()"
+                 pattern="{{loginPattern}}"
+          >
+        </label>
+      </div>
+      <div class="register-input">
+        <label>
+          <input type="password"
+                 autocomplete="current-password"
+                 formControlName="password"
+                 placeholder="Password *"
+                 required
+                 minlength="1"
+                 maxlength="40"
+                 (ngModelChange)="passwordChange()"
+                 pattern="{{passwordPattern}}"
+          >
+        </label>
+      </div>
+      <div class="register-input">
+        <label>
+          <input type="password"
+                 autocomplete="current-password"
+                 formControlName="password2"
+                 placeholder="Repeat password *"
+                 required
+                 minlength="1"
+                 maxlength="40"
+                 (ngModelChange)="password2Change()"
+                 pattern="{{passwordPattern}}"
+          >
+        </label>
+      </div>
+      <button type="button"
+              class="register-button gradient-green"
+              (click)="registerEvent($event)">
+        Register
+      </button>
+    </form>
+    <div class="error-message-container">
+      <div class="error-message name-error-massage" *ngIf="isNameInvalid">
+        Name is invalid. It should contain character-numeric symbols, as well as the characters !?,. and space.
+      </div>
+      <div class="error-message surname-error-massage" *ngIf="isSurnameInvalid">
+        Surname is invalid. It should contain character-numeric symbols, as well as the characters !?,. and space.
+      </div>
+      <div class="error-message login-error-massage" *ngIf="isLoginInvalid">
+        Login is invalid. It should contain character-numeric symbols, as well as the characters !?,. and space.
+      </div>
+      <div class="error-message password-error-massage" *ngIf="isPasswordInvalid">
+        Password is invalid. It should contain character-numeric symbols, as well as the characters _!?#.
+      </div>
+      <div class="error-message password2-error-massage" *ngIf="isPassword2Invalid">
+        Repeat password is invalid. The second password does not match the one you entered before.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="certificate-main text-style-main">
+  <div class="certificate-title">Certificate management create</div>
+  <div class="certificate-container">
+    <div class="certificate-info">
+      Fields marked with * are required
+    </div>
+    <form class="certificate-form" [formGroup]="createForm">
+      <div class="certificate-input">
+        <label>
+          <input type="text"
+                 formControlName="name"
+                 placeholder="Name *"
+                 required
+                 minlength="1"
+                 maxlength="45"
+                 (ngModelChange)="nameChange()"
+                 pattern="{{namePattern}}"
+          >
+        </label>
+      </div>
+      <div>
+        <label>
+          <textarea formControlName="description"
+                    placeholder="Description(max 1000 symbols)"
+                    maxlength="1000"
+                    (ngModelChange)="descriptionChange()"
+                    pattern="{{descriptionPattern}}"
+          ></textarea>
+        </label>
+      </div>
+      <div class="certificate-input">
+        <label>
+          <input type="number"
+                 formControlName="price"
+                 placeholder="Price *"
+                 required
+                 (ngModelChange)="priceChange()"
+                 min="0"
+          >
+        </label>
+      </div>
+      <div class="certificate-input">
+        <label>
+          <input type="number"
+                 formControlName="duration"
+                 placeholder="Duration *"
+                 required
+                 (ngModelChange)="durationChange()"
+                 min="0"
+          >
+        </label>
+      </div>
+      <button type="button" class="certificate-button gradient-green" (click)="submit($event)">Create</button>
+    </form>
+    <div class="error-message-container1">
+      <div class="error-message name-error-massage" *ngIf="isNameInvalid">
+        Name is invalid. It should contain character-numeric symbols, as well as the characters !?,. and space.
+      </div>
+    </div>
+    <div class="error-message-container2">
+      <div class="error-message description-error-massage" *ngIf="isDescriptionInvalid">
+        Description is invalid. It should contain character-numeric symbols, as well as the characters ,.!?- and space.
+      </div>
+      <div class="error-message price-error-massage" *ngIf="isPriceInvalid">
+        Price is invalid. It should be greater than zero.
+      </div>
+      <div class="error-message duration-error-massage" *ngIf="isDurationInvalid">
+        Duration is invalid. It should be greater than zero.
+      </div>
+    </div>
+  </div>
+</div>

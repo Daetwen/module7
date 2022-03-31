@@ -1,0 +1,152 @@
+<div class="certificates-main text-style-main">
+  <div class="certificates-title">Certificates list</div>
+  <div class="certificates-all-container" *ngIf="!isAll">
+    <button type="button"
+            class="certificates-button certificates-button-all gradient-green"
+            (click)="returnToAll($event)">
+      Return to the list of all certificates
+    </button>
+  </div>
+  <div [class.certificates-search-all-container]="isAdmin"
+       [class.certificates-search-all-container2]="isUser">
+    <div class="certificates-search-item">
+      <form class="certificates-search-form" [formGroup]="searchByParametersForm">
+        <label>
+          <input class="certificates-search-input certificates-search-border-1"
+                 type="text"
+                 formControlName="tagName"
+                 placeholder="Enter tag name"
+                 pattern="{{namePattern}}"
+          />
+        </label>
+        <label>
+          <input class="certificates-search-input"
+                 type="text"
+                 formControlName="part"
+                 placeholder="Enter part of certififcate name"
+                 pattern="{{namePattern}}"
+          />
+        </label>
+        <label>
+          <select formControlName="sort"
+                  class="certificates-search-input certificates-search-selector certificates-search-border-2" data-live-search="true">
+            <option value="asc">По возрастанию</option>
+            <option value="desc">По убыванию</option>
+          </select>
+        </label>
+        <button type="button"
+                class="certificates-button certificates-search-button gradient-green"
+                (click)="getByParameters($event)">
+          Find
+        </button>
+      </form>
+    </div>
+    <div class="certificates-search-item">
+      <form class="certificates-search-form" [formGroup]="searchByIdForm">
+        <label>
+          <input class="certificates-search-input certificates-search-border-3"
+                 type="number"
+                 formControlName="id"
+                 placeholder="Enter certificate ID"
+                 required
+                 min="1"
+          />
+        </label>
+        <button type="button"
+                class="certificates-button gradient-green"
+                (click)="getById($event)">
+          Find
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="certificates-admin-container">
+    <form class="certificates-search-form" *ngIf="isAdmin">
+      <button routerLink="/certificateCreate" class="certificates-button certificates-search-button-large gradient-green">
+        Create
+      </button>
+    </form>
+    <form class="certificates-search-form" *ngIf="isAdmin">
+      <button routerLink="/certificateUpdate" class="certificates-button certificates-search-button-large gradient-green">
+        Update
+      </button>
+    </form>
+    <div class="certificates-search-item" *ngIf="isAdmin">
+      <form class="certificates-search-form" [formGroup]="deleteForm">
+        <label>
+          <input class="certificates-search-input certificates-search-border-3"
+                 type="number"
+                 formControlName="id"
+                 placeholder="Enter certificate ID to delete"
+                 required
+                 min="1"
+          />
+        </label>
+        <button type="button" class="certificates-button gradient-green" (click)="deleteElement($event)">Delete</button>
+      </form>
+    </div>
+  </div>
+  <div class="certificates-container">
+    <div class="certificates-grid-container">
+      <div class="certificates-grid-container-item gradient-green" *ngFor="let certificate of collection">
+        <table class="certificates-table">
+          <tr>
+            <th class="certificates-text-title" colspan="2">Certificate</th>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">ID</td>
+            <td class="certificates-table-2 certificates-text">{{certificate.content.id}}</td>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Name</td>
+            <td class="certificates-table-2 certificates-text">{{certificate.content.name}}</td>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Description</td>
+            <td class="certificates-table-2 certificates-text line-limit-length">{{certificate.content.description}}</td>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Price</td>
+            <td class="certificates-table-2 certificates-text">{{certificate.content.price | mycurrency}}</td>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Duration</td>
+            <td class="certificates-table-2 certificates-text">{{certificate.content.duration}}</td>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Create date</td>
+            <td class="certificates-table-2 certificates-text">{{certificate.content.createDate | date:'dd MMMM yyyy HH:mm zzz'}}</td>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Last update date</td>
+            <td class="certificates-table-2 certificates-text">{{certificate.content.lastUpdateDate | date:'dd MMMM yyyy HH:mm zzz'}}</td>
+          </tr>
+          <tr>
+            <th class="certificates-text-title" colspan="2">Tags Information</th>
+          </tr>
+          <tr>
+            <td class="certificates-table-1 certificates-text">Names</td>
+            <td class="certificates-table-2 certificates-text line-limit-length">
+              <div class="tag-line" *ngFor="let tags of certificate.content.tags; index as i;">
+                {{tags.name}}<span *ngIf="i < certificate.content.tags.length - 1">,&nbsp;</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <form class="certificates-search-form">
+          <button type="button"
+                  class="certificates-button certificates-order-button gradient-green2"
+                  (click)="createOrder($event, certificate.content.id)">
+            Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="certificates-pages-container">
+    <button type="button" class="certificates-button-prev gradient-green" (click)="prevPage($event)">Back</button>
+    <div class="certificates-page-number">{{currentPage}}</div>
+    <button type="button" class="certificates-button-next gradient-green" (click)="nextPage($event)">Forward</button>
+  </div>
+</div>
+

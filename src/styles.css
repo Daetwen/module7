@@ -1,0 +1,54 @@
+body {
+  margin: auto;
+}
+.body-scroll {
+  margin: auto;
+  padding-top: 110px;
+}
+.wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #181617;
+}
+.gradient-green {
+  background: rgb(22,144,15);
+  background: linear-gradient(90deg, rgba(22,144,15,1) 26%, rgba(3,3,3,0.7570378493194152) 100%);
+}
+.gradient-green:hover {
+  background: rgb(32,101,29);
+  background: linear-gradient(90deg, rgba(32,101,29,1) 26%, rgba(3,3,3,0.8158613787311799) 100%);
+}
+.gradient-green:active {
+  background: rgb(35,82,33);
+  background: linear-gradient(90deg, rgba(35,82,33,1) 26%, rgba(3,3,3,0.8830882694874825) 100%);
+}
+
+.gradient-green2 {
+  background: rgb(35,82,33);
+  background: linear-gradient(90deg, rgba(35,82,33,1) 26%, rgba(3,3,3,0.8830882694874825) 100%);
+}
+.gradient-green2:hover {
+  background: rgb(22,57,21);
+  background: linear-gradient(90deg, rgba(22,57,21,1) 21%, rgba(3,3,3,0.8830882694874825) 100%);
+}
+.gradient-green2:active {
+  background: rgb(14,50,12);
+  background: linear-gradient(90deg, rgba(14,50,12,1) 21%, rgba(3,3,3,0.8830882694874825) 100%);
+}
+
+.text-style-main {
+  font-family: Open Sans, serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-dialog-container#modal-component {
+  border: 3px solid #262626;
+  border-radius: 2px;
+  background: #181617;
+  width: 400px;
+  height: 200px;
+}
