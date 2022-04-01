@@ -75,6 +75,13 @@
   width: 550px;
   height: 59px;
   top: 130px;
+  left: 170px;
+}
+.tags-all-container2 {
+  position: absolute;
+  width: 550px;
+  height: 59px;
+  top: 130px;
   left: 230px;
 }
 .tags-search-all-container {

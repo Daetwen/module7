@@ -90,6 +90,13 @@
   width: 550px;
   height: 59px;
   top: 130px;
+  left: 170px;
+}
+.certificates-all-container2 {
+  position: absolute;
+  width: 550px;
+  height: 59px;
+  top: 130px;
   left: 230px;
 }
 .certificates-search-all-container {

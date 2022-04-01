@@ -1,6 +1,7 @@
 <div class="tags-main text-style-main">
   <div class="tags-title">Tags list</div>
-  <div class="tags-all-container" *ngIf="!isAll">
+  <div [class.tags-all-container]="isAdmin"
+       [class.tags-all-container2]="isUser" *ngIf="!isAll">
     <button type="button"
             class="tags-button tags-button-all gradient-green"
             (click)="returnToAll($event)">

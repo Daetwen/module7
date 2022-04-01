@@ -1,6 +1,7 @@
 <div class="certificates-main text-style-main">
   <div class="certificates-title">Certificates list</div>
-  <div class="certificates-all-container" *ngIf="!isAll">
+  <div [class.certificates-all-container]="isAdmin"
+       [class.certificates-all-container2]="isUser" *ngIf="!isAll">
     <button type="button"
             class="certificates-button certificates-button-all gradient-green"
             (click)="returnToAll($event)">
