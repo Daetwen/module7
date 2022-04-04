@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CertificateService} from "../service/giftcertificate.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Tag} from "../service/model/tag";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ModalTagFindComponent} from "../modal/modaltagfind/modaltagfind.component";
 
 @Component({
   selector: 'app-tag',
@@ -46,7 +48,7 @@ export class TagComponent implements OnInit {
     id: new FormControl("")
   })
 
-  constructor(private certificate: CertificateService) {
+  constructor(private certificate: CertificateService, public matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -75,7 +77,7 @@ export class TagComponent implements OnInit {
       .subscribe((result) => {
       this.response = result;
       console.log(this.response)
-    });
+    }, () => this.errorFindHandler());
     this.deleteForm.reset();
   }
 
@@ -87,9 +89,9 @@ export class TagComponent implements OnInit {
         this.collection[0] = result as unknown as Tag;
         console.log(this.collection[0]);
         this.currentPage = 1;
-      });
+        this.isAll = false;
+      }, () => this.errorFindHandler());
     this.searchForm.reset();
-    this.isAll = false;
   }
 
   createQueryForSearchOne():string {
@@ -145,6 +147,12 @@ export class TagComponent implements OnInit {
         this.collection = result as unknown as Tag[];
         console.log(this.collection);
       });
+  }
+
+  errorFindHandler() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.id = "modal-component";
+    this.matDialog.open(ModalTagFindComponent, dialogConfig);
   }
 
   get searchId() { return this.searchForm.get("id"); }

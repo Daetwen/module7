@@ -4,6 +4,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Certificate} from "../service/model/certificate";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ModalOrderCreateComponent} from "../modal/modalordercreate/modalordercreate.component";
+import {ModalCertificateFindComponent} from "../modal/modalcertificatefind/modalcertificatefind.component";
+import {ContentList} from "../service/model/interface";
 
 @Component({
   selector: 'app-home',
@@ -74,11 +76,8 @@ export class HomeComponent implements OnInit {
       localStorage.setItem(this.LOCAL_STORAGE_KEY_FIND_BY_PARAMETERS, queryByParameters);
       this.certificate.getAll(queryByParameters.toString())
         .subscribe((result) => {
-          this.collection = result as unknown as Certificate[];
-          console.log(this.collection);
-          this.currentPage = 1;
+          this.isFindByParametersMoreThenZero(result);
         });
-      this.isAll = false;
     }
     this.searchByParametersForm.reset();
   }
@@ -92,8 +91,8 @@ export class HomeComponent implements OnInit {
           this.collection[0] = result as unknown as Certificate;
           console.log(this.collection);
           this.currentPage = 1;
-        });
-      this.isAll = false;
+          this.isAll = false;
+        }, () => this.errorFindHandler());
     }
     this.searchByIdForm.reset();
   }
@@ -115,7 +114,7 @@ export class HomeComponent implements OnInit {
         .subscribe((result) => {
           this.response = result;
           console.log(this.response)
-        });
+        }, () => this.errorFindHandler());
     }
     this.deleteForm.reset();
   }
@@ -127,9 +126,7 @@ export class HomeComponent implements OnInit {
       + this.CERTIFICATE_CREATE_PARAMETER_CERTIFICATE_ID
       + id;
     console.log(query);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.id = "modal-component";
-    this.matDialog.open(ModalOrderCreateComponent, dialogConfig);
+    this.addModalToCreate();
     // @ts-ignore
     this.certificate.postData(query).subscribe((result) => {
       this.response = result;
@@ -196,6 +193,29 @@ export class HomeComponent implements OnInit {
       this.collection = result as unknown as Certificate[];
       console.log(this.collection);
     });
+  }
+
+  errorFindHandler() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.id = "modal-component";
+    this.matDialog.open(ModalCertificateFindComponent, dialogConfig);
+  }
+
+  isFindByParametersMoreThenZero(result: ContentList<unknown>) {
+    if ((result as unknown as Certificate[]).length != 0) {
+      this.collection = result as unknown as Certificate[];
+      console.log(this.collection);
+      this.currentPage = 1;
+      this.isAll = false;
+    } else {
+      this.errorFindHandler();
+    }
+  }
+
+  addModalToCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.id = "modal-component";
+    this.matDialog.open(ModalOrderCreateComponent, dialogConfig);
   }
 
   get searchTagName() {return this.searchByParametersForm.get("tagName");}

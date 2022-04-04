@@ -25,6 +25,9 @@ import {AdminGuard} from "./guard/admin.guard";
 import { PricePipe } from './pipe/price.pipe';
 import {AppRoutingModule} from "./app-routing.module";
 import { ModalOrderFindComponent } from './modal/modalorderfind/modalorderfind.component';
+import { ModalUserFindComponent } from './modal/modaluserfind/modaluserfind.component';
+import { ModalTagFindComponent } from './modal/modaltagfind/modaltagfind.component';
+import { ModalCertificateFindComponent } from './modal/modalcertificatefind/modalcertificatefind.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { ModalOrderFindComponent } from './modal/modalorderfind/modalorderfind.c
     CertificateUpdateComponent,
     ModalOrderCreateComponent,
     PricePipe,
-    ModalOrderFindComponent
+    ModalOrderFindComponent,
+    ModalUserFindComponent,
+    ModalTagFindComponent,
+    ModalCertificateFindComponent
   ],
   imports: [FormsModule,
     ReactiveFormsModule,

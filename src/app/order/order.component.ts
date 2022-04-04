@@ -77,13 +77,11 @@ export class OrderComponent implements OnInit {
   getByUserId(event: Event) {
     event.preventDefault();
     if(this.searchUserId?.value != null && this.searchUserId?.value != "") {
-      this.currentPage = 1;
       const queryString = this.FIND_BY_USER_ID_PATH + this.searchUserId?.value;
       localStorage.setItem(this.LOCAL_STORAGE_KEY_FIND_BY_USER_ID, queryString);
       this.getElementsForSearchByUserId();
-      this.searchByUserIdForm.reset();
-      this.isAll = false;
     }
+    this.searchByUserIdForm.reset();
   }
 
   returnToAll(event: Event) {
@@ -130,8 +128,14 @@ export class OrderComponent implements OnInit {
       + this.currentPage;
     this.certificate.getAll((queryString))
       .subscribe((result) => {
-        this.collection = result as unknown as Order[];
-        console.log(this.collection);
+        if ((result as unknown as Order[]).length != 0) {
+          this.collection = result as unknown as Order[];
+          console.log(this.collection);
+          this.currentPage = 1;
+          this.isAll = false;
+        } else {
+          this.errorFindHandler();
+        }
       });
   }
 
@@ -151,7 +155,7 @@ export class OrderComponent implements OnInit {
         console.log(this.collection[0]);
         this.currentPage = 1;
         this.isAll = false;
-      }, error => this.errorFindHandler());
+      }, () => this.errorFindHandler());
   }
 
   errorFindHandler() {

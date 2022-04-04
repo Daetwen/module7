@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CertificateService} from "../service/giftcertificate.service";
 import {User} from "../service/model/user";
 import {FormControl, FormGroup} from "@angular/forms";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ModalUserFindComponent} from "../modal/modaluserfind/modaluserfind.component";
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,7 @@ export class UserComponent implements OnInit {
     id: new FormControl(""),
   })
 
-  constructor(private certificate: CertificateService) {
+  constructor(private certificate: CertificateService, public matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -39,11 +41,11 @@ export class UserComponent implements OnInit {
           this.collection = [];
           this.collection[0] = result as unknown as User;
           console.log(this.collection[0]);
-          this.searchByIdForm.reset();
           this.currentPage = 1;
-        });
-      this.isAll = false;
+          this.isAll = false;
+        }, () => this.errorFindHandler());
     }
+    this.searchByIdForm.reset();
   }
 
   returnToAll(event: Event) {
@@ -75,6 +77,12 @@ export class UserComponent implements OnInit {
       this.collection = result as unknown as User[];
       console.log(this.collection);
     });
+  }
+
+  errorFindHandler() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.id = "modal-component";
+    this.matDialog.open(ModalUserFindComponent, dialogConfig);
   }
 
   get searchId() { return this.searchByIdForm.get("id"); }
