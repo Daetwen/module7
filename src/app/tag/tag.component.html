@@ -1,0 +1,96 @@
+<div class="tags-main text-style-main">
+  <div class="tags-title">Tags list</div>
+  <div [class.tags-all-container]="isAdmin"
+       [class.tags-all-container2]="isUser" *ngIf="!isAll">
+    <button type="button"
+            class="tags-button tags-button-all gradient-green"
+            (click)="returnToAll($event)">
+      Return to the list of all tags
+    </button>
+  </div>
+  <div [class.tags-search-all-container]="isAdmin"
+       [class.tags-search-all-container2]="isUser">
+    <div class="tags-search-item">
+      <form class="tags-search-form" [formGroup]="searchForm">
+        <label>
+          <input class="tags-search-input tags-search-border-1"
+                 type="number"
+                 formControlName="id"
+                 placeholder="Enter tag ID"
+                 min="1"
+          />
+        </label>
+        <label>
+          <input class="tags-search-input tags-search-border-2"
+                 type="text"
+                 formControlName="name"
+                 placeholder="Enter tag name"
+                 pattern="{{namePattern}}"
+          />
+        </label>
+        <button type="button"
+                class="tags-button tags-search-button gradient-green"
+                (click)="findOne($event)">
+          Find
+        </button>
+      </form>
+    </div>
+    <form class="tags-search-form">
+      <button type="button"
+              class="tags-button tags-search-button-large gradient-green"
+              (click)="findMostPopular($event)">
+        Find the most popular tag
+      </button>
+    </form>
+  </div>
+  <div class="tags-admin-container">
+    <div class="tags-search-item" *ngIf="isAdmin">
+      <form class="tags-search-form" [formGroup]="createForm">
+        <label>
+          <input class="tags-search-input tags-search-border-3"
+                 type="text"
+                 formControlName="name"
+                 placeholder="Enter tag name to create"
+                 required
+                 pattern="{{namePattern}}"
+          />
+        </label>
+        <button type="button" class="tags-button gradient-green" (click)="createElement($event)">Create</button>
+      </form>
+    </div>
+    <div class="tags-search-item" *ngIf="isAdmin">
+      <form class="tags-search-form" [formGroup]="deleteForm">
+        <label>
+          <input class="tags-search-input tags-search-border-3"
+                 type="number"
+                 formControlName="id"
+                 placeholder="Enter tag ID to delete"
+                 required
+                 min="1"
+          />
+        </label>
+        <button type="button" class="tags-button gradient-green" (click)="deleteElement($event)">Delete</button>
+      </form>
+    </div>
+  </div>
+  <div class="tags-container">
+    <table class="tags-table text-style-main">
+      <tr>
+        <th class="profile-table-1 profile-text">ID</th>
+        <th class="profile-table-2 profile-text">TAG NAME</th>
+      </tr>
+      <tr *ngFor="let tag of collection">
+        <td class="profile-table-1 profile-text">{{tag.content.id}}</td>
+        <td class="profile-table-2 profile-text">{{tag.content.name}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="tags-pages-container">
+    <button type="button" class="tags-button-prev gradient-green" (click)="prevPage($event)">Back</button>
+    <div class="tags-page-number">{{currentPage}}</div>
+    <button type="button" class="tags-button-next gradient-green" (click)="nextPage($event)">Forward</button>
+  </div>
+  <div class="size"></div>
+</div>
+
+

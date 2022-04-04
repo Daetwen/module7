@@ -1,0 +1,72 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open Sans"
+    rel="stylesheet"
+  />
+  <title>Certificate</title>
+</head>
+<body [class.body-scroll]="isScroll">
+<div class="wrapper text-style-main">
+  <header>
+    <div [class.header]="!isScroll"
+         [class.header_fixed]="isScroll"
+         (window:scroll)="onScrollEvent($event)">
+      <a class="header-title" type="submit" routerLink="/home" i18n>
+        Certificates Service
+      </a>
+      <nav class="header-nav-container">
+        <ul>
+          <li class="header-ref0"><a routerLink="/home">Certificates</a></li>
+          <li class="header-ref1"><a routerLink="/tags">Tags</a></li>
+          <li class="header-ref2"><a routerLink="/orders">Orders</a></li>
+          <li class="header-ref3"><a routerLink="/users">Users</a></li>
+          <li class="header-sign-in"><a href="/profile">Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section class="main">
+    <div class="main-background">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+  <footer class="footer">
+    <a class="footer-title" type="submit" routerLink="/home" i18n>Certificates Service</a>
+    <ul class="footer-info-refs">
+      <li class="footer-info-refs-item">
+        <a href="https://github.com/Daetwen/module4" target="_blank">
+          <img class="footer-github-logo"
+               src="./assets/png/github-logo.png"
+               alt="github-logo"
+          >
+        </a>
+      </li>
+      <li class="footer-info-refs-item">
+        <a href="https://vk.com/vlad_makarey" target="_blank">
+          <img class="footer-vk-logo"
+               src="./assets/svg/vk-logo.svg"
+               alt="vk-logo"
+          >
+        </a>
+      </li>
+      <li class="footer-info-refs-item">
+        <a href="https://t.me/Daetwen" target="_blank">
+          <svg class="footer-svg-icon5" width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.4299 0.755723L0.838079 9.93565C-0.0710467 10.3631 -0.378545 11.2193 0.618303 11.6839L6.41413 13.6246L20.4275 4.49886C21.1927 3.92594 21.976 4.07873 21.302 4.70893L9.26632 16.1918L8.88824 21.0513C9.23843 21.8016 9.87963 21.8051 10.2886 21.4322L13.6185 18.1122L19.3214 22.612C20.6459 23.4383 21.3666 22.905 21.6516 21.3906L25.3922 2.72707C25.7806 0.862859 25.1182 0.0414915 23.4299 0.755723Z" fill="#040303"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+    <div class="footer-copyright">GiftCertificateService Module7 © 2022</div>
+  </footer>
+</div>
+</body>
+</html>
+

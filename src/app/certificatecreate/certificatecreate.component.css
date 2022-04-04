@@ -1,0 +1,120 @@
+input {
+  position: relative;
+  width: 600px;
+  height: 55px;
+  left: 0;
+  top: 0;
+  border: 1px solid #666666;
+  border-radius: 5px 5px 5px 5px;
+  background: #CCCCCC;
+  outline: none;
+  color: #333333;
+  font-size: 23px;
+  padding-left: 15px;
+}
+textarea {
+  position: relative;
+  border: 1px solid #666666;
+  border-radius: 5px 5px 5px 5px;
+  background: #CCCCCC;
+  outline: none;
+  color: #333333;
+  font-size: 23px;
+  padding-left: 15px;
+  padding-top: 15px;
+  overflow: hidden;
+  min-width: 600px;
+  max-width: 600px;
+  min-height: 55px;
+  max-height: 165px;
+}
+.certificate-main {
+  height: 750px;
+}
+.certificate-title {
+  position: relative;
+  width: 100%;
+  top: 40px;
+  font-size: 48px;
+  line-height: 72px;
+  text-align: center;
+  color: #333333;
+}
+.certificate-form {
+  position: relative;
+  width: 600px;
+  height: auto;
+}
+.certificate-container {
+  position: relative;
+  width: 600px;
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.certificate-info {
+  position: relative;
+  width: auto;
+  height: 29px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 27px;
+  color: #333333;
+}
+.certificate-input {
+  padding-bottom: 10px;
+}
+.certificate-button {
+  position: relative;
+  width: 620px;
+  height: 60px;
+  top: 6px;
+  left: 0;
+  border-radius: 5px;
+  outline: none;
+  font-size: 23px;
+  line-height: 27px;
+  text-align: center;
+  color: #F7F7F7;
+}
+.error-message-container1 {
+  position: absolute;
+  top: 25px;
+  right: -304px;
+  width: 280px;
+  height: 65px;
+}
+.error-message-container2 {
+  position: relative;
+  top: -275px;
+  right: -624px;
+  width: 280px;
+  height: 205px;
+}
+.error-message {
+  position: relative;
+  height: auto;
+  width: 280px;
+  text-align: justify;
+  font-size: 15px;
+  line-height: 15px;
+  color: #FF0C00;
+  text-shadow: 1px 1px 1px #333333, 0 0 0.1em #333333, 0 0 0.1em #FF0C00;
+}
+.name-error-massage {
+  position: absolute;
+  top: 5px;
+}
+.description-error-massage {
+  position: absolute;
+  top: 5px;
+}
+.price-error-massage {
+  position: absolute;
+  top: 82px;
+}
+.duration-error-massage {
+  position: absolute;
+  top: 147px;
+}
+

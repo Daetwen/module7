@@ -1,0 +1,100 @@
+input {
+  position: relative;
+  width: 600px;
+  height: 55px;
+  left: 0;
+  top: 0;
+  border: 1px solid #666666;
+  border-radius: 5px 5px 5px 5px;
+  background: #CCCCCC;
+  outline: none;
+  color: #333333;
+  font-size: 23px;
+  padding-left: 15px;
+}
+.register-main {
+  height: 750px;
+}
+.register-title {
+  position: relative;
+  width: 100%;
+  top: 40px;
+  font-size: 48px;
+  line-height: 72px;
+  text-align: center;
+  color: #333333;
+}
+.register-form {
+  position: relative;
+  width: 600px;
+  height: auto;
+}
+.register-container {
+  position: relative;
+  width: 600px;
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.register-info {
+  position: relative;
+  width: auto;
+  height: 29px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 27px;
+  color: #333333;
+}
+.register-input {
+  padding-bottom: 10px;
+}
+.register-button {
+  position: relative;
+  width: 620px;
+  height: 60px;
+  top: 6px;
+  left: 0;
+  border-radius: 5px;
+  outline: none;
+  font-size: 23px;
+  line-height: 27px;
+  text-align: center;
+  color: #F7F7F7;
+}
+.error-message-container {
+  position: relative;
+  top: -405px;
+  right: -624px;
+  width: 280px;
+  height: 335px;
+}
+.error-message {
+  position: relative;
+  height: auto;
+  width: 280px;
+  text-align: justify;
+  font-size: 15px;
+  line-height: 15px;
+  color: #FF0C00;
+  text-shadow: 1px 1px 1px #333333, 0 0 0.1em #333333, 0 0 0.1em #FF0C00;
+}
+.name-error-massage {
+  position: absolute;
+  top: 5px;
+}
+.surname-error-massage {
+  position: absolute;
+  top: 72px;
+}
+.login-error-massage {
+  position: absolute;
+  top: 142px;
+}
+.password-error-massage {
+  position: absolute;
+  top: 212px;
+}
+.password2-error-massage {
+  position: absolute;
+  top: 282px;
+}

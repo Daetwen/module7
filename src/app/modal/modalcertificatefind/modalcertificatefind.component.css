@@ -1,0 +1,33 @@
+.modal-content-wrapper {
+  position: absolute;
+  z-index: 900;
+  left: 50%;
+  top:50%;
+}
+.modal-text {
+  position: relative;
+  left: -180px;
+  top: -70px;
+  width: 60%;
+  height: auto;
+  text-align: center;
+  font-size: 23px;
+  font-weight: normal;
+  line-height: 100%;
+  color: #F7F7F7;
+}
+.modal-cancel-button {
+  position: relative;
+  left: -50px;
+  top: -20px;
+  width: 100px;
+  height: 55px;
+  border: 1px solid #0F5C31;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  font-size: 23px;
+  line-height: 27px;
+  align-items: center;
+  text-align: center;
+  color: #F7F7F7;
+}
